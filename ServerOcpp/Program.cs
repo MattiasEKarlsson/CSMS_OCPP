@@ -17,10 +17,7 @@ namespace ServerOcpp
         {
             List<string> boot = new List<string>();
 
-            protected override void OnOpen()
-            {
-                base.OnOpen();
-            }
+           
 
             protected override void OnMessage(MessageEventArgs e)
             {
@@ -34,8 +31,11 @@ namespace ServerOcpp
                 {
                     case "BootNotification":
                         Console.WriteLine("Its a BootNotification");
-                        string aa = "[3,\"19223201\",{\"currentTime\": \"2013-02-01T20:53:32.486Z\",\"interval\": 60,\"status\": \"Accepted\"}]";
-                        Send(aa);
+
+                        string date = $"\"{DateTime.Now}\"";
+                        string bootReponse = "[3,\"19223201\",{\"currentTime\": "+date+",\"interval\": 10,\"status\": \"Accepted\"}]";
+                        Console.WriteLine(bootReponse);
+                        Send(bootReponse);
                         break;
                     case "Heartbeat":
                         
